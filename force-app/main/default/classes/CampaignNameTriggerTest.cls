@@ -27,7 +27,7 @@ private class CampaignNameTriggerTest {
             System.assert(false,'Should not get here');
         }
         catch(Exception e) {
-            System.assert(e.getMessage().contains('You can not change the Name of the Campaign directly.'),'The validation message we are expecting was not found');
+            System.assert(e.getMessage().contains('You can\'t change the Name directly.'),'The validation message we are expecting was not found');
         }
     }
 
