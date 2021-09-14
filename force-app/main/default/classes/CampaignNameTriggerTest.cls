@@ -4,7 +4,7 @@ private class CampaignNameTriggerTest {
     @isTest
     static void shouldSetCorrectNameOnInsert() {
         //arrange
-        Campaign sut = new Campaign(Name='I should not matter', StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 1', Type='Webinar');
+        Campaign sut = new Campaign(StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 1', Type='Webinar');
 
         //act
         insert sut;
@@ -17,7 +17,7 @@ private class CampaignNameTriggerTest {
     @isTest
     static void shouldPreventUserFromChangingRecordName() {
         //arrange
-        Campaign previous = new Campaign(Name='I should not matter', StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 3', Type='Webinar');
+        Campaign previous = new Campaign(StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 3', Type='Webinar');
         insert previous;
         Campaign sut = new Campaign(Id=previous.Id, Name='21-Sep-13-Mwahaha I break your conventions');
 
@@ -35,7 +35,7 @@ private class CampaignNameTriggerTest {
     static void shouldTrimOverlyLengthyShortName() {
         //arrange
         String tooLongText = 'An overly long and unhelpful name of a Campaign that really should be shortened.';
-        Campaign sut = new Campaign(Name='I should not matter', StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = tooLongText, Type='Advertisement');
+        Campaign sut = new Campaign(StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = tooLongText, Type='Advertisement');
 
         //act
         insert sut;
@@ -48,7 +48,7 @@ private class CampaignNameTriggerTest {
     @isTest
     static void shouldSetCorrectNameOnUpdate() {
         //arrange
-        Campaign previous = new Campaign(Name='I should not matter', StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 2', Type='Webinar');
+        Campaign previous = new Campaign(StartDate = Date.newInstance(2021, 09, 13), Short_Name__c = 'A Test Campaign 2', Type='Webinar');
         insert previous;
         Campaign sut = new Campaign(Id=previous.Id, Short_Name__c='An Updated Campaign Name that again is too long and really should be shortened', Type = 'Advertisement');
 
